@@ -1,7 +1,10 @@
+```html
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Cherki</title>
 
     <style>
@@ -17,7 +20,7 @@
 
         body {
             background: #000;
-            color: #fff;
+            color: white;
             font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
             overflow-x: hidden;
         }
@@ -55,7 +58,6 @@
             top: 0;
             left: 0;
             width: 100%;
-
             padding: 25px 40px;
 
             display: flex;
@@ -106,7 +108,6 @@
             font-size: 12px;
             letter-spacing: 5px;
             text-transform: uppercase;
-
             margin-bottom: 30px;
 
             animation: fadeUp 1s ease both;
@@ -115,7 +116,6 @@
         h1 {
             font-size: clamp(80px, 17vw, 220px);
             line-height: 0.8;
-
             font-weight: 600;
             letter-spacing: -12px;
 
@@ -135,11 +135,9 @@
 
         .description {
             max-width: 650px;
-
             margin-top: 45px;
 
             color: #888;
-
             font-size: 20px;
             line-height: 1.6;
             font-weight: 300;
@@ -151,7 +149,6 @@
             margin-top: 80px;
 
             color: #555;
-
             font-size: 10px;
             text-transform: uppercase;
             letter-spacing: 3px;
@@ -170,11 +167,9 @@
 
         .gallery-title {
             text-align: center;
-
             margin-bottom: 35px;
 
             color: #555;
-
             font-size: 10px;
             text-transform: uppercase;
             letter-spacing: 4px;
@@ -185,7 +180,7 @@
             gap: 20px;
             width: max-content;
 
-            animation: slide 30s linear infinite;
+            animation: slide 35s linear infinite;
         }
 
         .track:hover {
@@ -201,8 +196,6 @@
             border-radius: 25px;
             overflow: hidden;
 
-            position: relative;
-
             border: 1px solid rgba(255,255,255,0.08);
 
             transition: transform 0.5s ease;
@@ -212,52 +205,27 @@
             transform: scale(1.03);
         }
 
-        /* Presets visuels sans images externes */
+        .card img {
+            width: 100%;
+            height: 100%;
 
-        .image1 {
-            background:
-                radial-gradient(circle at 70% 20%, #595959, transparent 20%),
-                linear-gradient(145deg, #292929, #050505);
+            object-fit: cover;
+            display: block;
+
+            transition:
+                transform 0.7s ease,
+                filter 0.5s ease;
+
+            filter: brightness(0.85);
         }
 
-        .image2 {
-            background:
-                radial-gradient(circle at 30% 30%, #777, transparent 18%),
-                linear-gradient(145deg, #161616, #333);
-        }
-
-        .image3 {
-            background:
-                radial-gradient(circle at 65% 70%, #555, transparent 20%),
-                linear-gradient(160deg, #050505, #272727);
-        }
-
-        .image4 {
-            background:
-                radial-gradient(circle at 50% 40%, #888, transparent 15%),
-                linear-gradient(120deg, #333, #050505);
-        }
-
-        .image5 {
-            background:
-                radial-gradient(circle at 20% 70%, #666, transparent 18%),
-                linear-gradient(145deg, #0a0a0a, #3a3a3a);
-        }
-
-        .card::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-
-            background: linear-gradient(
-                to top,
-                rgba(0,0,0,0.45),
-                transparent 55%
-            );
+        .card:hover img {
+            transform: scale(1.08);
+            filter: brightness(1);
         }
 
         /* =========================
-           CATEGORIES
+           CATÉGORIES
         ========================= */
 
         .categories {
@@ -268,13 +236,11 @@
 
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-
             gap: 25px;
         }
 
         .category {
             min-height: 430px;
-
             padding: 45px;
 
             display: flex;
@@ -293,6 +259,8 @@
             );
 
             border: 1px solid rgba(255,255,255,0.10);
+
+            backdrop-filter: blur(15px);
 
             transition:
                 transform 0.5s ease,
@@ -333,9 +301,7 @@
 
         .text {
             max-width: 280px;
-
             color: #777;
-
             font-size: 14px;
             line-height: 1.6;
         }
@@ -488,10 +454,21 @@
 
 <body>
 
+    <!-- =========================
+         NAVIGATION
+    ========================= -->
+
     <nav>
         <div class="logo">CHERKI.</div>
-        <div class="nav-text">Football · Creativity · Vision</div>
+        <div class="nav-text">
+            Football · Creativity · Vision
+        </div>
     </nav>
+
+
+    <!-- =========================
+         PAGE PRINCIPALE
+    ========================= -->
 
     <section class="hero">
 
@@ -512,6 +489,11 @@
 
     </section>
 
+
+    <!-- =========================
+         IMAGES
+    ========================= -->
+
     <section class="gallery">
 
         <div class="gallery-title">
@@ -520,33 +502,72 @@
 
         <div class="track">
 
-            <!-- Série 1 -->
+            <!-- PREMIÈRE SÉRIE -->
 
-            <div class="card image1"></div>
-            <div class="card image2"></div>
-            <div class="card image3"></div>
-            <div class="card image4"></div>
-            <div class="card image5"></div>
+            <div class="card">
+                <img src="cherki1.jpg" alt="Rayan Cherki">
+            </div>
 
-            <!-- Série 2 = copie pour boucle infinie -->
+            <div class="card">
+                <img src="cherki2.jpg" alt="Rayan Cherki">
+            </div>
 
-            <div class="card image1"></div>
-            <div class="card image2"></div>
-            <div class="card image3"></div>
-            <div class="card image4"></div>
-            <div class="card image5"></div>
+            <div class="card">
+                <img src="cherki3.jpg" alt="Rayan Cherki">
+            </div>
+
+            <div class="card">
+                <img src="cherki4.jpg" alt="Rayan Cherki">
+            </div>
+
+            <div class="card">
+                <img src="cherki5.jpg" alt="Rayan Cherki">
+            </div>
+
+
+            <!-- DEUXIÈME SÉRIE
+                 indispensable pour la boucle infinie -->
+
+            <div class="card">
+                <img src="cherki1.jpg" alt="Rayan Cherki">
+            </div>
+
+            <div class="card">
+                <img src="cherki2.jpg" alt="Rayan Cherki">
+            </div>
+
+            <div class="card">
+                <img src="cherki3.jpg" alt="Rayan Cherki">
+            </div>
+
+            <div class="card">
+                <img src="cherki4.jpg" alt="Rayan Cherki">
+            </div>
+
+            <div class="card">
+                <img src="cherki5.jpg" alt="Rayan Cherki">
+            </div>
 
         </div>
 
     </section>
 
+
+    <!-- =========================
+         CATÉGORIES
+    ========================= -->
+
     <section class="categories">
 
-        <a href="presentation.html" class="category">
+        <a href="#" class="category">
 
-            <span class="number">01</span>
+            <span class="number">
+                01
+            </span>
 
-            <h2>Présentation</h2>
+            <h2>
+                Présentation
+            </h2>
 
             <div class="bottom">
 
@@ -556,17 +577,24 @@
                     de sa carrière.
                 </p>
 
-                <span class="arrow">↗</span>
+                <span class="arrow">
+                    ↗
+                </span>
 
             </div>
 
         </a>
 
-        <a href="style.html" class="category">
 
-            <span class="number">02</span>
+        <a href="#" class="category">
 
-            <h2>Style de jeu</h2>
+            <span class="number">
+                02
+            </span>
+
+            <h2>
+                Style de jeu
+            </h2>
 
             <div class="bottom">
 
@@ -576,13 +604,20 @@
                     intelligence de jeu.
                 </p>
 
-                <span class="arrow">↗</span>
+                <span class="arrow">
+                    ↗
+                </span>
 
             </div>
 
         </a>
 
     </section>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
 
     <footer>
         <span>CHERKI</span>
