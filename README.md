@@ -1,49 +1,39 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Mon site</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Un titre</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background: white;
+            color: black;
+
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            font-size: 64px;
+            font-weight: 400;
+            letter-spacing: -2px;
+        }
+    </style>
 </head>
-<style>
-header {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background: #f5f5f5;
-}
 
-header h1 {
-    font-size: 60px;
-    margin-bottom: 20px;
-}
-
-header p {
-    font-size: 22px;
-}
-
-header a {
-    padding: 15px 30px;
-    background: black;
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-}
-
-<style>
 <body>
 
-    <video autoplay muted loop playsinline id="video-fond">
-        <source src="video.mp4" type="video/mp4">
-    </video>
-
-    <div class="contenu">
-        <h1>Bienvenue sur mon site</h1>
-        <p>Découvrez mon univers</p>
-        <a href="#">En savoir plus</a>
-    </div>
+    <h1>un titre</h1>
 
 </body>
 </html>
