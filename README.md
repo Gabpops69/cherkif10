@@ -1,17 +1,10 @@
-```html
-<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Cherki — The Artist</title>
+    <title>Cherki</title>
 
     <style>
-        /* =========================
-           RESET
-        ========================= */
-
         * {
             margin: 0;
             padding: 0;
@@ -25,57 +18,32 @@
         body {
             background: #000;
             color: #fff;
-            font-family:
-                -apple-system,
-                BlinkMacSystemFont,
-                "SF Pro Display",
-                "Helvetica Neue",
-                Arial,
-                sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
             overflow-x: hidden;
         }
 
         /* =========================
-           BACKGROUND
+           FOND
         ========================= */
 
         body::before {
             content: "";
             position: fixed;
-            width: 800px;
-            height: 800px;
-            top: -400px;
+            width: 700px;
+            height: 700px;
+            top: -350px;
             left: 50%;
             transform: translateX(-50%);
 
-            background:
-                radial-gradient(
-                    circle,
-                    rgba(90, 90, 110, 0.25) 0%,
-                    rgba(50, 50, 60, 0.08) 40%,
-                    transparent 70%
-                );
+            background: radial-gradient(
+                circle,
+                rgba(90, 80, 120, 0.35),
+                transparent 70%
+            );
 
+            filter: blur(30px);
             pointer-events: none;
-            z-index: -3;
-            filter: blur(20px);
-        }
-
-        body::after {
-            content: "";
-            position: fixed;
-            inset: 0;
-
-            background:
-                radial-gradient(
-                    circle at 50% 50%,
-                    transparent 0%,
-                    rgba(0, 0, 0, 0.3) 60%,
-                    #000 100%
-                );
-
-            pointer-events: none;
-            z-index: -2;
+            z-index: -1;
         }
 
         /* =========================
@@ -88,19 +56,19 @@
             left: 0;
             width: 100%;
 
-            padding: 25px 50px;
+            padding: 25px 40px;
 
             display: flex;
             justify-content: space-between;
             align-items: center;
 
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
             z-index: 100;
-
-            background: rgba(0, 0, 0, 0.35);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
         }
 
         .logo {
@@ -109,11 +77,11 @@
             letter-spacing: -0.5px;
         }
 
-        .nav-right {
-            font-size: 12px;
-            letter-spacing: 2px;
+        .nav-text {
+            color: #666;
+            font-size: 11px;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            color: #777;
         }
 
         /* =========================
@@ -130,82 +98,57 @@
 
             text-align: center;
 
-            padding: 120px 30px 80px;
-
-            position: relative;
+            padding: 120px 25px 80px;
         }
 
-        .eyebrow {
-            font-size: 13px;
+        .small-title {
+            color: #777;
+            font-size: 12px;
             letter-spacing: 5px;
             text-transform: uppercase;
-            color: #777;
 
             margin-bottom: 30px;
 
-            opacity: 0;
-            animation: fadeUp 1s ease forwards;
-            animation-delay: 0.15s;
+            animation: fadeUp 1s ease both;
         }
 
-        .hero h1 {
-            font-size: clamp(90px, 16vw, 230px);
-
-            line-height: 0.82;
+        h1 {
+            font-size: clamp(80px, 17vw, 220px);
+            line-height: 0.8;
 
             font-weight: 600;
-
             letter-spacing: -12px;
 
-            background:
-                linear-gradient(
-                    180deg,
-                    #ffffff 0%,
-                    #bdbdbd 48%,
-                    #686868 100%
-                );
+            background: linear-gradient(
+                180deg,
+                #ffffff 0%,
+                #bcbcbc 50%,
+                #666666 100%
+            );
 
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
 
-            opacity: 0;
-            animation:
-                heroTitle 1.3s cubic-bezier(.16,1,.3,1) forwards;
-            animation-delay: 0.2s;
+            animation: titleAppear 1.3s cubic-bezier(.16, 1, .3, 1) both;
         }
 
-        .intro {
-            max-width: 700px;
+        .description {
+            max-width: 650px;
 
             margin-top: 45px;
 
-            color: #858585;
+            color: #888;
 
-            font-size: clamp(18px, 2vw, 24px);
-
-            line-height: 1.5;
-
+            font-size: 20px;
+            line-height: 1.6;
             font-weight: 300;
 
-            opacity: 0;
-
-            animation: fadeUp 1s ease forwards;
-            animation-delay: 0.6s;
+            animation: fadeUp 1s ease 0.4s both;
         }
 
-        /* =========================
-           SCROLL INDICATOR
-        ========================= */
-
         .scroll {
-            position: absolute;
-            bottom: 35px;
-
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
+            margin-top: 80px;
 
             color: #555;
 
@@ -213,283 +156,215 @@
             text-transform: uppercase;
             letter-spacing: 3px;
 
-            animation: scrollPulse 2s infinite ease-in-out;
-        }
-
-        .scroll-line {
-            width: 1px;
-            height: 45px;
-            background: linear-gradient(
-                to bottom,
-                #777,
-                transparent
-            );
+            animation: pulse 2s ease-in-out infinite;
         }
 
         /* =========================
-           IMAGE MARQUEE
+           GALERIE
         ========================= */
 
-        .gallery-section {
-            padding: 30px 0 150px;
+        .gallery {
+            padding: 20px 0 160px;
             overflow: hidden;
         }
 
         .gallery-title {
             text-align: center;
 
+            margin-bottom: 35px;
+
             color: #555;
 
-            font-size: 11px;
-
+            font-size: 10px;
             text-transform: uppercase;
-
             letter-spacing: 4px;
-
-            margin-bottom: 35px;
         }
 
-        .marquee {
-            width: 100%;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .marquee-track {
+        .track {
             display: flex;
-            width: max-content;
             gap: 20px;
+            width: max-content;
 
-            animation:
-                marquee 35s linear infinite;
+            animation: slide 30s linear infinite;
         }
 
-        .marquee:hover .marquee-track {
+        .track:hover {
             animation-play-state: paused;
         }
 
-        .image-card {
-            width: 340px;
-            height: 460px;
+        .card {
+            width: 320px;
+            height: 420px;
 
             flex-shrink: 0;
 
-            border-radius: 24px;
-
+            border-radius: 25px;
             overflow: hidden;
 
             position: relative;
 
-            background: #111;
+            border: 1px solid rgba(255,255,255,0.08);
 
-            border: 1px solid rgba(255, 255, 255, 0.08);
-
-            transition:
-                transform 0.5s ease,
-                border-color 0.5s ease;
+            transition: transform 0.5s ease;
         }
 
-        .image-card:hover {
+        .card:hover {
             transform: scale(1.03);
-            border-color: rgba(255, 255, 255, 0.25);
         }
 
-        .image-card img {
-            width: 100%;
-            height: 100%;
+        /* Presets visuels sans images externes */
 
-            object-fit: cover;
-
-            display: block;
-
-            filter: grayscale(20%);
-
-            transition:
-                transform 0.8s cubic-bezier(.16,1,.3,1),
-                filter 0.5s ease;
+        .image1 {
+            background:
+                radial-gradient(circle at 70% 20%, #595959, transparent 20%),
+                linear-gradient(145deg, #292929, #050505);
         }
 
-        .image-card:hover img {
-            transform: scale(1.08);
-            filter: grayscale(0%);
+        .image2 {
+            background:
+                radial-gradient(circle at 30% 30%, #777, transparent 18%),
+                linear-gradient(145deg, #161616, #333);
         }
 
-        .image-card::after {
+        .image3 {
+            background:
+                radial-gradient(circle at 65% 70%, #555, transparent 20%),
+                linear-gradient(160deg, #050505, #272727);
+        }
+
+        .image4 {
+            background:
+                radial-gradient(circle at 50% 40%, #888, transparent 15%),
+                linear-gradient(120deg, #333, #050505);
+        }
+
+        .image5 {
+            background:
+                radial-gradient(circle at 20% 70%, #666, transparent 18%),
+                linear-gradient(145deg, #0a0a0a, #3a3a3a);
+        }
+
+        .card::after {
             content: "";
-
             position: absolute;
             inset: 0;
 
-            background:
-                linear-gradient(
-                    to top,
-                    rgba(0, 0, 0, 0.6),
-                    transparent 45%
-                );
-
-            pointer-events: none;
+            background: linear-gradient(
+                to top,
+                rgba(0,0,0,0.45),
+                transparent 55%
+            );
         }
 
         /* =========================
            CATEGORIES
         ========================= */
 
-        .categories-section {
-            padding: 50px 30px 180px;
-        }
-
         .categories {
             max-width: 1200px;
-
             margin: auto;
 
-            display: grid;
+            padding: 20px 25px 180px;
 
+            display: grid;
             grid-template-columns: repeat(2, 1fr);
 
             gap: 25px;
         }
 
         .category {
-            position: relative;
-
             min-height: 430px;
 
-            padding: 48px;
+            padding: 45px;
 
             display: flex;
-
             flex-direction: column;
-
             justify-content: space-between;
 
-            color: white;
-
             text-decoration: none;
+            color: #fff;
 
             border-radius: 30px;
 
-            overflow: hidden;
+            background: linear-gradient(
+                135deg,
+                rgba(255,255,255,0.10),
+                rgba(255,255,255,0.025)
+            );
 
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(255, 255, 255, 0.11),
-                    rgba(255, 255, 255, 0.025)
-                );
-
-            border:
-                1px solid rgba(255, 255, 255, 0.10);
-
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.10);
 
             transition:
-                transform 0.6s cubic-bezier(.16,1,.3,1),
-                background 0.4s ease,
-                border-color 0.4s ease;
-        }
-
-        .category::before {
-            content: "";
-
-            position: absolute;
-
-            width: 300px;
-            height: 300px;
-
-            top: -150px;
-            right: -100px;
-
-            background:
-                radial-gradient(
-                    circle,
-                    rgba(255,255,255,0.10),
-                    transparent 70%
-                );
-
-            filter: blur(10px);
-
-            transition: transform 0.8s ease;
+                transform 0.5s ease,
+                border-color 0.5s ease,
+                background 0.5s ease;
         }
 
         .category:hover {
-            transform: translateY(-12px);
+            transform: translateY(-10px);
 
-            border-color:
-                rgba(255,255,255,0.23);
+            background: linear-gradient(
+                135deg,
+                rgba(255,255,255,0.16),
+                rgba(255,255,255,0.04)
+            );
 
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(255,255,255,0.15),
-                    rgba(255,255,255,0.04)
-                );
+            border-color: rgba(255,255,255,0.22);
         }
 
-        .category:hover::before {
-            transform: scale(1.5);
-        }
-
-        .category-number {
+        .number {
             color: #666;
-
             font-size: 12px;
-
             letter-spacing: 3px;
         }
 
         .category h2 {
-            position: relative;
-
-            font-size: clamp(38px, 4vw, 60px);
-
+            font-size: clamp(38px, 5vw, 62px);
             font-weight: 500;
-
-            letter-spacing: -2px;
+            letter-spacing: -3px;
         }
 
-        .category-bottom {
+        .bottom {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-end;
+            gap: 30px;
         }
 
-        .category-description {
+        .text {
+            max-width: 280px;
+
             color: #777;
 
             font-size: 14px;
-
-            max-width: 260px;
-
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         .arrow {
             width: 55px;
             height: 55px;
 
+            flex-shrink: 0;
+
             display: flex;
             justify-content: center;
             align-items: center;
 
-            border:
-                1px solid rgba(255,255,255,0.15);
-
+            border: 1px solid rgba(255,255,255,0.15);
             border-radius: 50%;
 
-            font-size: 24px;
+            font-size: 22px;
 
             transition:
-                transform 0.5s ease,
-                background 0.4s ease;
+                background 0.4s ease,
+                color 0.4s ease,
+                transform 0.4s ease;
         }
 
         .category:hover .arrow {
-            transform: translate(5px, -5px);
-
-            background: white;
-            color: black;
+            background: #fff;
+            color: #000;
+            transform: translate(4px, -4px);
         }
 
         /* =========================
@@ -497,26 +372,37 @@
         ========================= */
 
         footer {
-            padding: 35px 50px;
+            border-top: 1px solid rgba(255,255,255,0.08);
 
-            border-top:
-                1px solid rgba(255,255,255,0.08);
+            padding: 30px 40px;
 
             display: flex;
             justify-content: space-between;
 
             color: #444;
 
-            font-size: 11px;
-
-            letter-spacing: 2px;
-
+            font-size: 10px;
+            letter-spacing: 3px;
             text-transform: uppercase;
         }
 
         /* =========================
            ANIMATIONS
         ========================= */
+
+        @keyframes titleAppear {
+            from {
+                opacity: 0;
+                transform: translateY(70px) scale(0.95);
+                filter: blur(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
+        }
 
         @keyframes fadeUp {
             from {
@@ -530,33 +416,19 @@
             }
         }
 
-        @keyframes heroTitle {
-            from {
-                opacity: 0;
-                transform: translateY(60px) scale(0.95);
-                filter: blur(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
-            }
-        }
-
-        @keyframes scrollPulse {
+        @keyframes pulse {
             0%, 100% {
-                opacity: 0.4;
+                opacity: 0.3;
                 transform: translateY(0);
             }
 
             50% {
                 opacity: 1;
-                transform: translateY(8px);
+                transform: translateY(7px);
             }
         }
 
-        @keyframes marquee {
+        @keyframes slide {
             from {
                 transform: translateX(0);
             }
@@ -576,7 +448,7 @@
                 padding: 20px;
             }
 
-            .nav-right {
+            .nav-text {
                 display: none;
             }
 
@@ -585,8 +457,17 @@
                 padding-right: 20px;
             }
 
-            .hero h1 {
+            h1 {
                 letter-spacing: -7px;
+            }
+
+            .description {
+                font-size: 17px;
+            }
+
+            .card {
+                width: 250px;
+                height: 340px;
             }
 
             .categories {
@@ -594,29 +475,12 @@
             }
 
             .category {
-                min-height: 360px;
-                padding: 32px;
-            }
-
-            .image-card {
-                width: 260px;
-                height: 360px;
+                min-height: 350px;
+                padding: 30px;
             }
 
             footer {
                 padding: 25px 20px;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-
-            *,
-            *::before,
-            *::after {
-                scroll-behavior: auto !important;
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
             }
         }
     </style>
@@ -624,241 +488,105 @@
 
 <body>
 
-    <!-- =========================
-         NAVIGATION
-    ========================= -->
-
     <nav>
         <div class="logo">CHERKI.</div>
-
-        <div class="nav-right">
-            Football · Talent · Vision
-        </div>
+        <div class="nav-text">Football · Creativity · Vision</div>
     </nav>
 
+    <section class="hero">
 
-    <!-- =========================
-         HERO
-    ========================= -->
+        <div class="small-title">
+            The creative player
+        </div>
 
-    <main>
+        <h1>Cherki</h1>
 
-        <section class="hero">
+        <p class="description">
+            Une immersion dans l'univers d'un joueur
+            qui transforme chaque ballon en possibilité.
+        </p>
 
-            <div class="eyebrow">
-                The creative player
-            </div>
+        <div class="scroll">
+            Scroll ↓
+        </div>
 
-            <h1>Cherki</h1>
+    </section>
 
-            <p class="intro">
-                Une immersion dans l'univers d'un joueur
-                dont la créativité transforme chaque ballon
-                en possibilité.
-            </p>
+    <section class="gallery">
 
-            <div class="scroll">
-                Scroll
-                <div class="scroll-line"></div>
-            </div>
+        <div class="gallery-title">
+            The moments
+        </div>
 
-        </section>
+        <div class="track">
 
+            <!-- Série 1 -->
 
-        <!-- =========================
-             GALERIE INFINIE
-        ========================= -->
+            <div class="card image1"></div>
+            <div class="card image2"></div>
+            <div class="card image3"></div>
+            <div class="card image4"></div>
+            <div class="card image5"></div>
 
-        <section class="gallery-section">
+            <!-- Série 2 = copie pour boucle infinie -->
 
-            <div class="gallery-title">
-                The moments
-            </div>
+            <div class="card image1"></div>
+            <div class="card image2"></div>
+            <div class="card image3"></div>
+            <div class="card image4"></div>
+            <div class="card image5"></div>
 
-            <div class="marquee">
+        </div>
 
-                <div class="marquee-track">
+    </section>
 
-                    <!-- PREMIÈRE SÉRIE -->
+    <section class="categories">
 
-                    <div class="image-card">
-                        <img
-                            src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=900&q=85"
-                            alt="Football"
-                        >
-                    </div>
+        <a href="presentation.html" class="category">
 
-                    <div class="image-card">
-                        <img
-                            src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=900&q=85"
-                            alt="Football"
-                        >
-                    </div>
+            <span class="number">01</span>
 
-                    <div class="image-card">
-                        <img
-                            src="https://images.unsplash.com/photo-1577223625816-7546f13df25d?auto=format&fit=crop&w=900&q=85"
-                            alt="Football"
-                        >
-                    </div>
+            <h2>Présentation</h2>
 
-                    <div class="image-card">
-                        <img
-                            src="https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?auto=format&fit=crop&w=900&q=85"
-                            alt="Stadium"
-                        >
-                    </div>
+            <div class="bottom">
 
-                    <div class="image-card">
-                        <img
-                            src="https://images.unsplash.com/photo-1575361204480-aadea25e6e68?auto=format&fit=crop&w=900&q=85"
-                            alt="Football stadium"
-                        >
-                    </div>
+                <p class="text">
+                    Son parcours, son histoire,
+                    ses débuts et l'évolution
+                    de sa carrière.
+                </p>
 
-                    <div class="image-card">
-                        <img
-                            src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=900&q=85"
-                            alt="Football player"
-                        >
-                    </div>
-
-
-                    <!-- DEUXIÈME SÉRIE
-                         DOIT ÊTRE IDENTIQUE
-                         POUR L'EFFET INFINI -->
-
-                    <div class="image-card">
-                        <img
-                            src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=900&q=85"
-                            alt="Football"
-                        >
-                    </div>
-
-                    <div class="image-card">
-                        <img
-                            src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=900&q=85"
-                            alt="Football"
-                        >
-                    </div>
-
-                    <div class="image-card">
-                        <img
-                            src="https://images.unsplash.com/photo-1577223625816-7546f13df25d?auto=format&fit=crop&w=900&q=85"
-                            alt="Football"
-                        >
-                    </div>
-
-                    <div class="image-card">
-                        <img
-                            src="https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?auto=format&fit=crop&w=900&q=85"
-                            alt="Stadium"
-                        >
-                    </div>
-
-                    <div class="image-card">
-                        <img
-                            src="https://images.unsplash.com/photo-1575361204480-aadea25e6e68?auto=format&fit=crop&w=900&q=85"
-                            alt="Football stadium"
-                        >
-                    </div>
-
-                    <div class="image-card">
-                        <img
-                            src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=900&q=85"
-                            alt="Football player"
-                        >
-                    </div>
-
-                </div>
+                <span class="arrow">↗</span>
 
             </div>
 
-        </section>
+        </a>
 
+        <a href="style.html" class="category">
 
-        <!-- =========================
-             CATÉGORIES
-        ========================= -->
+            <span class="number">02</span>
 
-        <section class="categories-section">
+            <h2>Style de jeu</h2>
 
-            <div class="categories">
+            <div class="bottom">
 
-                <a href="presentation.html" class="category">
+                <p class="text">
+                    Technique, créativité,
+                    dribbles, vision et
+                    intelligence de jeu.
+                </p>
 
-                    <span class="category-number">
-                        01
-                    </span>
-
-                    <h2>
-                        Présentation
-                    </h2>
-
-                    <div class="category-bottom">
-
-                        <p class="category-description">
-                            Son parcours, son histoire,
-                            ses débuts et l'évolution
-                            de sa carrière.
-                        </p>
-
-                        <span class="arrow">
-                            ↗
-                        </span>
-
-                    </div>
-
-                </a>
-
-
-                <a href="style.html" class="category">
-
-                    <span class="category-number">
-                        02
-                    </span>
-
-                    <h2>
-                        Style de jeu
-                    </h2>
-
-                    <div class="category-bottom">
-
-                        <p class="category-description">
-                            Créativité, dribbles, vision,
-                            technique et intelligence
-                            dans le jeu.
-                        </p>
-
-                        <span class="arrow">
-                            ↗
-                        </span>
-
-                    </div>
-
-                </a>
+                <span class="arrow">↗</span>
 
             </div>
 
-        </section>
+        </a>
 
-    </main>
-
-
-    <!-- =========================
-         FOOTER
-    ========================= -->
+    </section>
 
     <footer>
-
-        <span>
-            CHERKI
-        </span>
-
-        <span>
-            2026
-        </span>
-
+        <span>CHERKI</span>
+        <span>2026</span>
     </footer>
 
 </body>
