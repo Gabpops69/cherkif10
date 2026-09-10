@@ -32,9 +32,6 @@ header a {
     border-radius: 8px;
 }
 
-
-
-
 <style>
 <body>
 
